@@ -1,0 +1,18 @@
+.vscode
+node_modules
+# .env
+Build
+build
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+/.g8
+*.iml
+*.log
+package-lock.json
+/nbproject/
