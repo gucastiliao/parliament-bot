@@ -11,9 +11,11 @@ class Dialog extends EmitterService {
 
     constructor(dialogName: string, audios: IAudio[]) {
         super();
-
+        
         this.dialogName = dialogName;
         this.audios = audios;
+        
+        super.convertFunctionsToEvents();
     }
 
     public getAudio(audioName: string): IAudio[] {
@@ -22,10 +24,10 @@ class Dialog extends EmitterService {
         });
     }
 
-    public onEventIni(payload, response) {}
-    public onEventNone(payload, response) {}
-    public onEventRepeat(payload, response) {}
-    public onEventSilence(payload, response) {}
+    public onEventIni(payload, response) {console.log('Event Ini ' + this.dialogName)}
+    public onEventNone(payload, response) {console.log('Event None ' + this.dialogName)}
+    public onEventRepeat(payload, response) {console.log('Event Repeat ' + this.dialogName)}
+    public onEventSilence(payload, response) {console.log('Event Silence ' + this.dialogName)}
 }
 
 export default Dialog;

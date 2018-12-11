@@ -24,13 +24,9 @@ class Acidente extends Dialog {
         super('EUR_ACIDENTE', dialogs);
     }
 
-    public onEventSim() {
+    public onEventSim(payload, response) {
         const audio = this.getAudio("SIM_01");
-        console.log(audio[0].text);
-    }
-
-    public onEventRepeat() {
-        this.emit(this.onEventIni({}, {}));
+        console.log(audio[0].text, payload, response);
     }
 }
 

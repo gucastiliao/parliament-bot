@@ -28,6 +28,11 @@ class Pane extends Dialog {
         const audio = this.getAudio("SIM_01");
         console.log(audio[0].text);
     }
+
+    public onEventRepeat() {
+        const audio = this.getAudio("REPETE_01");
+        console.log(audio[0].text);
+    }
 }
 
 export default Pane;

@@ -7,7 +7,7 @@ class Events {
     this.pubSub = new EventEmitter();
   }
 
-  public trigger = (eventName: string, payload, response: Response) => {
+  public trigger = (eventName: string, payload, response) => {
     if (!(this.pubSub.listenerCount(eventName) > 0)) {
       const splitStr = eventName.split(".");
       eventName = `${splitStr[0]}.NONE`;
@@ -16,8 +16,10 @@ class Events {
     this.pubSub.emit(eventName, payload, response);
   };
 
-  public on(eventName: string, callBack: (payload, response: Response) => void) {
-    this.pubSub.on(eventName, callBack);
+  public on(eventName: string, callBack: (payload, response) => void) {
+    if (this.pubSub.listenerCount(eventName) <= 0) {
+      this.pubSub.on(eventName, callBack);
+    }
   }
 }
 
