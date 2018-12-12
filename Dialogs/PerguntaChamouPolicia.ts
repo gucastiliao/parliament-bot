@@ -1,6 +1,6 @@
 import DefaultDialog from "./DefaultDialog";
 
-class Pane extends DefaultDialog {
+class PerguntaChamouPolicia extends DefaultDialog {
     constructor() {
         const audios = [
             {
@@ -17,11 +17,11 @@ class Pane extends DefaultDialog {
                 text: "... É pro veículo dessa placa mesmo?! Pode falar:"
             }, {
                 src: "SIM_01",
-                text: "Ok pane!"
+                text: "Ok chamou policia!"
             }
         ];
 
-        super('pane', audios);
+        super('perguntaChamouPolicia', audios);
     }
 
     public eventSim(payload, response) {
@@ -29,13 +29,7 @@ class Pane extends DefaultDialog {
         console.log(audio[0].text);
 
         this.emit().with(payload, response).onEvent('silence');
-        this.emit('acidente').with(payload, response).onEvent('chamouPolicia');
-    }
-
-    public eventRepeat() {
-        const audio = this.getAudio("REPETE_01");
-        console.log(audio[0].text);
     }
 }
 
-export default Pane;
+export default PerguntaChamouPolicia;

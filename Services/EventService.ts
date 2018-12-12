@@ -18,6 +18,7 @@ class Events {
 
   public on(eventName: string, callBack: (payload, response) => void) {
     if (this.pubSub.listenerCount(eventName) <= 0) {
+      console.log(eventName);
       this.pubSub.on(eventName, callBack);
     }
   }

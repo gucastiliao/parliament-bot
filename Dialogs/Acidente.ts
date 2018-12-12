@@ -1,8 +1,8 @@
-import Dialog from "../Dialogs/Dialog";
+import DefaultDialog from "./DefaultDialog";
 
-class Acidente extends Dialog {
+class Acidente extends DefaultDialog {
     constructor() {
-        const dialogs = [
+        const audios = [
             {
                 src: "INI_01",
                 text: "Entendi. Então, antes de seguir com a assistência, eu preciso confirmar algumas informações com você."
@@ -17,16 +17,18 @@ class Acidente extends Dialog {
                 text: "... É pro veículo dessa placa mesmo?! Pode falar:"
             }, {
                 src: "SIM_01",
-                text: "Ok!"
+                text: "Ok acidente!"
             }
         ];
 
-        super('EUR_ACIDENTE', dialogs);
+        super('acidente', audios);
     }
 
-    public onEventSim(payload, response) {
+    public eventSim(payload, response) {
         const audio = this.getAudio("SIM_01");
-        console.log(audio[0].text, payload, response);
+        console.log(audio[0].text);
+
+        this.emit('perguntaChamouPolicia').with(payload, response).onEvent('sim');
     }
 }
 

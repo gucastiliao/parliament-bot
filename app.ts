@@ -1,10 +1,12 @@
 import Acidente from "./Dialogs/Acidente";
 import Pane from "./Dialogs/Pane";
-import EventService from "./Services/EventService";
+import PerguntaChamouPolicia from "./Dialogs/PerguntaChamouPolicia";
+
+const payload = {};
+const response = {};
 
 const acidente = new Acidente();
 const pane = new Pane();
+const perguntaChamouPolicia = new PerguntaChamouPolicia();
 
-EventService.trigger("EUR_ACIDENTE.onEventSim", {}, {})
-EventService.trigger("EUR_ACIDENTE.onEventSilence", {}, {})
-EventService.trigger("EUR_PANE.onEventRepeat", {}, {})
+acidente.emit().with(payload, response).onEvent('sim');
