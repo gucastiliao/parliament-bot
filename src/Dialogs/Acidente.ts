@@ -28,10 +28,8 @@ class Acidente extends DefaultDialog {
     }
 
     public eventSim(payload: IEventPayload, response: Response) {
-        const audio = this.getAudio("SIM_01");
-        console.log(audio[0].text);
-
-        this.emit('perguntaChamouPolicia').with(payload, response).onEvent('sim');
+        this.updatePayload(payload, 'sim');
+        response.playAndGatherAndRedirect(this.getAudio("SIM_01"));
     }
 }
 

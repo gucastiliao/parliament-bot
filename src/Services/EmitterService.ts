@@ -13,9 +13,13 @@ class EmitterService {
     public emit(onDialog: string = undefined) {
         this.onDialog = onDialog;
 
-        this.onDialog = (onDialog === undefined) 
-            ? this['dialogName']
-            : DialogNameEnum[onDialog];
+        if (onDialog != undefined && DialogNameEnum[onDialog] === undefined) {
+            this.onDialog = onDialog;
+        } else {
+            this.onDialog = (onDialog === undefined) 
+                ? this['dialogName']
+                : DialogNameEnum[onDialog];
+        }
 
         return this;
     }

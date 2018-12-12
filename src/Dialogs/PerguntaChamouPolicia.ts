@@ -28,10 +28,8 @@ class PerguntaChamouPolicia extends DefaultDialog {
     }
 
     public eventSim(payload: IEventPayload, response: Response) {
-        const audio = this.getAudio("SIM_01");
-        console.log(audio[0].text);
-
-        this.emit().with(payload, response).onEvent('silence');
+        response.play(this.getAudio("SIM_01"));
+        response.hangup();
     }
 }
 

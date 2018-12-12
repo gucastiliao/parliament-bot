@@ -1,5 +1,6 @@
 import EmitterService from "../Services/EmitterService";
 import DialogNameEnum from "../Types/Dialogs/DialogNameEnum";
+import IEventPayload from "../Types/IEventPayload";
 
 interface IAudio {
     src: string;
@@ -19,9 +20,20 @@ class DefaultDialog extends EmitterService {
         super.convertFunctionsToEvents();
     }
 
+    public updatePayload(payload: IEventPayload, eventName) {
+        payload.state.currentDialog = {
+            main: this.dialogName,
+            secundary: eventName,
+            class: this.constructor.name
+        };
+    }
+
     public getAudio(audioName: string): IAudio[] {
         return this.audios.filter((audio) => {
-            return audio.src === audioName;
+            if (audio.src === audioName) {
+                audio.src = `${this.dialogName}_${audio.src}`;
+                return true;
+            }
         });
     }
 

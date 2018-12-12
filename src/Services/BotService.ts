@@ -1,4 +1,3 @@
-
 import IEventPayload from '../Types/IEventPayload';
 import Response from "../Services/Response/ResponseService";
 
@@ -28,6 +27,10 @@ function defaultMessage(payload: IEventPayload) {
 function executeMessageWithText(text: string, payload: IEventPayload, response: Response): any {
     if (textToExecuteMessageFunction[text] !== undefined) {
         return textToExecuteMessageFunction[text](payload, response);
+    }
+
+    if (payload.state.currentDialog !== undefined) {
+        //
     }
 
     return textToExecuteMessageFunction['default'](payload);

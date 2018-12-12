@@ -1,8 +1,9 @@
 import { TurnContext } from "botbuilder";
+import IConversationState from "./IConversationState";
 
 interface IEventPayload {
   context: TurnContext;
-  state: {};
+  state: IConversationState;
   response?: any;
 }
 

@@ -3,6 +3,7 @@ import { BotFrameworkAdapter, ConversationState } from "botbuilder";
 import RedisStorage from "./Services/RedisStorageService";
 import Response from "./Services/Response/ResponseService";
 import BotService from "./Services/BotService";
+import IConversationState from "./Types/IConversationState";
 
 const server = restify.createServer();
 server.listen(process.env.SERVER_PORT || '4500', '0.0.0.0', () => {
@@ -11,7 +12,7 @@ server.listen(process.env.SERVER_PORT || '4500', '0.0.0.0', () => {
 
 const adapter = new BotFrameworkAdapter();
 
-const conversationState = new ConversationState(new RedisStorage());
+const conversationState = new ConversationState<IConversationState>(new RedisStorage());
 adapter.use(conversationState);
 
 server.get('/', (req, resp) => {resp.send(200)});
@@ -25,7 +26,7 @@ server.post("/api/messages", (req, res) => {
 
                 return BotService.executeMessageWithText(
                     context.activity.text,
-                    {context, state},
+                    { context, state },
                     response
                 );
             }
