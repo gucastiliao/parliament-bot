@@ -1,6 +1,9 @@
+import Response from "../Services/Response/ResponseService";
 import DefaultDialog from "./DefaultDialog";
 
-class PerguntaChamouPolicia extends DefaultDialog {
+import IEventPayload from '../Types/IEventPayload';
+
+class Acidente extends DefaultDialog {
     constructor() {
         const audios = [
             {
@@ -17,19 +20,19 @@ class PerguntaChamouPolicia extends DefaultDialog {
                 text: "... É pro veículo dessa placa mesmo?! Pode falar:"
             }, {
                 src: "SIM_01",
-                text: "Ok chamou policia!"
+                text: "Ok acidente!"
             }
         ];
 
-        super('perguntaChamouPolicia', audios);
+        super('acidente', audios);
     }
 
-    public eventSim(payload, response) {
+    public eventSim(payload: IEventPayload, response: Response) {
         const audio = this.getAudio("SIM_01");
         console.log(audio[0].text);
 
-        this.emit().with(payload, response).onEvent('silence');
+        this.emit('perguntaChamouPolicia').with(payload, response).onEvent('sim');
     }
 }
 
-export default PerguntaChamouPolicia;
+export default Acidente;

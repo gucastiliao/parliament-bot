@@ -1,4 +1,7 @@
+import Response from "../Services/Response/ResponseService";
 import DefaultDialog from "./DefaultDialog";
+
+import IEventPayload from '../Types/IEventPayload';
 
 class Pane extends DefaultDialog {
     constructor() {
@@ -24,7 +27,7 @@ class Pane extends DefaultDialog {
         super('pane', audios);
     }
 
-    public eventSim(payload, response) {
+    public eventSim(payload: IEventPayload, response: Response) {
         const audio = this.getAudio("SIM_01");
         console.log(audio[0].text);
 

@@ -1,13 +1,16 @@
 {
   "name": "parliament-bot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "ts-node ./src/app.ts",
     "dev": "NODE_ENV=local ./node_modules/nodemon/bin/nodemon.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "axios": "0.18.0",
     "bluebird": "3.5.2",
@@ -15,7 +18,8 @@
     "dotenv": "2.0.0",
     "redis": "2.8.0",
     "restify": "4.3.0",
-    "sync-request": "6.0.0"
+    "sync-request": "6.0.0",
+    "xml-js": "^1.6.8"
   },
   "devDependencies": {
     "@types/jest": "23.3.1",
@@ -39,8 +43,5 @@
       "json",
       "node"
     ]
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

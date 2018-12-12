@@ -1,5 +1,5 @@
 import EmitterService from "../Services/EmitterService";
-import DialogNameEnum from "../src/Types/Dialogs/DialogNameEnum";
+import DialogNameEnum from "../Types/Dialogs/DialogNameEnum";
 
 interface IAudio {
     src: string;

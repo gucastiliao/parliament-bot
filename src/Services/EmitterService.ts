@@ -1,5 +1,8 @@
+import Response from "../Services/Response/ResponseService";
 import EventService from "./EventService";
-import DialogNameEnum from "../src/Types/Dialogs/DialogNameEnum";
+import DialogNameEnum from "../Types/Dialogs/DialogNameEnum";
+
+import IEventPayload from '../Types/IEventPayload';
 
 class EmitterService {
     private onDialog: string;
@@ -17,7 +20,7 @@ class EmitterService {
         return this;
     }
 
-    public with(payload, response) {
+    public with(payload: IEventPayload, response: Response) {
         this.payload = payload;
         this.response = response;
 
@@ -33,7 +36,6 @@ class EmitterService {
             this.response
         );
     }
-
 
     public hasMethod (obj, name) {
         const desc = Object.getOwnPropertyDescriptor (obj, name);
