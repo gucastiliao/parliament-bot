@@ -22,7 +22,6 @@ class BotService {
 
     public executeMessageWithText(text: string, payload: IEventPayload, response: Response): any {
         if (this.textToExecuteMessageFunction[text.toLowerCase()] !== undefined) {
-            console.log(`[executeMessage] - ${text}`);
             return this.textToExecuteMessageFunction[text.toLowerCase()](payload, response);
         }
     

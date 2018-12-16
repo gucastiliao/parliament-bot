@@ -44,8 +44,6 @@ class DefaultDialog extends EmitterService {
     }
 
     public eventInit(payload: IEventPayload, response: Response) {
-        console.log('eventInit');
-        console.log(this.audios);
         response.playAndGatherAndRedirect(this.getAudio("INIT_01"))
     }
 
