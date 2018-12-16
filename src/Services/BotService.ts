@@ -1,39 +1,37 @@
 import IEventPayload from '../Types/IEventPayload';
-import Response from "../Services/Response/ResponseService";
+import Response from "./Response/ResponseService";
 
-import Acidente from "../Dialogs/Acidente";
-import Pane from "../Dialogs/Pane";
-import PerguntaChamouPolicia from "../Dialogs/PerguntaChamouPolicia";
+import ColetaCpfCnpj from "../Dialogs/ColetaCpfCnpj";
+const coletaCpfCnpj = new ColetaCpfCnpj();
 
-const acidente = new Acidente();
-const pane = new Pane();
-const perguntaChamouPolicia = new PerguntaChamouPolicia();
+class BotService {
+    private textToExecuteMessageFunction: Object = {
+        'start_conversation': this.init,
+        'init': this.init,
+        'default': this. defaultMessage
+    };
 
-const textToExecuteMessageFunction = {
-    'start_conversation': init,
-    'INIT': init,
-    'default': defaultMessage
-};
-
-function init(payload: IEventPayload, response: Response) {
-    acidente.emit().with(payload, response).onEvent('sim');
-    return response.sendUsing(payload);
-}
-
-function defaultMessage(payload: IEventPayload) {
-    return payload.context.sendActivity('none');
-}
-
-function executeMessageWithText(text: string, payload: IEventPayload, response: Response): any {
-    if (textToExecuteMessageFunction[text] !== undefined) {
-        return textToExecuteMessageFunction[text](payload, response);
+    public init(payload: IEventPayload, response: Response) {
+        coletaCpfCnpj.emit().with(payload, response).onEvent('init');
+        return response.sendUsing(payload);
     }
 
-    if (payload.state.currentDialog !== undefined) {
-        //
+    public defaultMessage(payload: IEventPayload) {
+        return payload.context.sendActivity('none');
     }
 
-    return textToExecuteMessageFunction['default'](payload);
+    public executeMessageWithText(text: string, payload: IEventPayload, response: Response): any {
+        if (this.textToExecuteMessageFunction[text.toLowerCase()] !== undefined) {
+            console.log(`[executeMessage] - ${text}`);
+            return this.textToExecuteMessageFunction[text.toLowerCase()](payload, response);
+        }
+    
+        if (payload.state.currentDialog !== undefined) {
+            //
+        }
+    
+        return this.textToExecuteMessageFunction['default'](payload);
+    }
 }
 
-export default { executeMessageWithText };
+export default BotService;

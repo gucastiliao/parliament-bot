@@ -7,7 +7,7 @@ class ColetaCpfCnpj extends DefaultDialog {
     constructor() {
         const audios = [
             {
-                src: "INI_01",
+                src: "INIT_01",
                 text: "Olá, digite o CPF ou CNPJ",
             }
         ];
@@ -21,4 +21,4 @@ class ColetaCpfCnpj extends DefaultDialog {
     }
 }
 
-export default Acidente;
+export default ColetaCpfCnpj;

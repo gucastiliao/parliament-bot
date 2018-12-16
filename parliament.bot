@@ -1,0 +1,18 @@
+{
+    "name": "Parliament Bot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:4500/api/messages",
+            "id": "f2a72500-0181-11e9-91fa-45ebe62b23fc",
+            "name": "http://localhost:4500/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "overrides": null,
+    "path": "/Users/gucastiliao/Desenvolvimento/Parliament Bot.bot"
+}

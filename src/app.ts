@@ -1,8 +1,10 @@
 import * as restify from "restify";
 import { BotFrameworkAdapter, ConversationState } from "botbuilder";
+
 import RedisStorage from "./Services/RedisStorageService";
 import Response from "./Services/Response/ResponseService";
 import BotService from "./Services/BotService";
+
 import IConversationState from "./Types/IConversationState";
 
 const server = restify.createServer();
@@ -23,12 +25,15 @@ server.post("/api/messages", (req, res) => {
             if (context.activity.type === "message") {
                 const state = conversationState.get(context);
                 const response = new Response();
+                const botService = new BotService();
 
-                return BotService.executeMessageWithText(
+                const message = botService.executeMessageWithText(
                     context.activity.text,
                     { context, state },
                     response
                 );
+
+                return message;
             }
         });
     } catch (error) {

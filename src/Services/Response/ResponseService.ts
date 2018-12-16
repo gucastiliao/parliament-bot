@@ -41,8 +41,10 @@ class Response extends XMLElement {
     }
 
     public play(audios: IAudio[]) {
+        
         this.addCommands(
             audios.map(audio => {
+                console.log(`[response.play] - ${audio.src}`);
                 this.audioText.push(audio.text);
                 return new PlayCommand("1", `s3://bot-audios/${audio.src}.gsm`);
             })
