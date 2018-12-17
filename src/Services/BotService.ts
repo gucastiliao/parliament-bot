@@ -2,7 +2,10 @@ import IEventPayload from '../Types/IEventPayload';
 import Response from "./Response/ResponseService";
 
 import ColetaCpfCnpj from "../Dialogs/ColetaCpfCnpj";
+import ColetaPlaca from "../Dialogs/ColetaPlaca";
+
 const coletaCpfCnpj = new ColetaCpfCnpj();
+const coletaPlaca = new ColetaPlaca();
 
 class BotService {
     private textToExecuteMessageFunction: Object = {
@@ -26,7 +29,10 @@ class BotService {
         }
     
         if (payload.state.currentDialog !== undefined) {
-            //
+            if (payload.state.currentDialog.main === 'COLETACPFCNPJ') {
+                coletaCpfCnpj.emit().with(payload, response).onEvent('digitou');
+                return response.sendUsing(payload);
+            }
         }
     
         return this.textToExecuteMessageFunction['default'](payload);

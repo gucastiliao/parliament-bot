@@ -15,9 +15,10 @@ class ColetaCpfCnpj extends DefaultDialog {
         super('coletaCpfCnpj', audios);
     }
 
-    public eventSim(payload: IEventPayload, response: Response) {
-        this.updatePayload(payload, 'sim');
-        response.playAndGatherAndRedirect(this.getAudio("SIM_01"));
+    public eventDigitou(payload: IEventPayload, response: Response) {
+        payload.state.cpfCnpj = payload.context.activity.text;
+        this.updatePayload(payload, 'digitou');
+        this.emit('coletaPlaca').with(payload, response).onEvent('init');
     }
 }
 
