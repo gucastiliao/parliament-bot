@@ -24,8 +24,8 @@ class DefaultDialog extends EmitterService {
 
     public updatePayload(payload: IEventPayload, eventName) {
         payload.state.currentDialog = {
-            main: this.dialogName,
-            secundary: eventName,
+            main: this.dialogName.toUpperCase(),
+            secundary: eventName.toUpperCase(),
             class: this.constructor.name
         };
     }
@@ -44,18 +44,22 @@ class DefaultDialog extends EmitterService {
     }
 
     public eventInit(payload: IEventPayload, response: Response) {
+        this.updatePayload(payload, 'init');
         response.playAndGatherAndRedirect(this.getAudio("INIT_01"))
     }
 
     public eventNone(payload: IEventPayload, response: Response) {
+        this.updatePayload(payload, 'none');
         response.playAndGatherAndRedirect(this.getAudio("NONE_01"))
     }
 
     public eventRepeat(payload: IEventPayload, response: Response) {
+        this.updatePayload(payload, 'repeat');
         response.playAndGatherAndRedirect(this.getAudio("REPEAT_01"))
     }
 
     public eventSilence(payload: IEventPayload, response: Response) {
+        this.updatePayload(payload, 'silence');
         response.playAndGatherAndRedirect(this.getAudio("SILENCE_01"))
     }
 
